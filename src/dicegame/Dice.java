@@ -33,6 +33,12 @@ public class Dice {
 	}
 	
 	
+	@Override
+	public String toString() {
+		return "[" + min + ", " + max + "]";
+	}
+	
+	
 	public int launch() {
 		return min + (randGenerator.nextInt(delta));
 	}

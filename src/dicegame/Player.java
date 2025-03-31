@@ -35,15 +35,20 @@ public class Player {
 		return	"\nname      = " + name + 
 				"\nsurname   = " + surname + 
 				"\nnickname  = " + nickname + 
-				"\ndice: ["+ dice.min + ", " +  dice.max + "]";
+				"\ndice: " + dice.toString();
 	}
 
 	public int getScore() {
 		return score;
 	}
 	
+	public void resetScore() {
+		score = 0;
+	}
+	
 	public void setDice(Dice dice) {
 		this.dice = dice;
+		System.out.println("\nCHANGE OF DICE!\n" + nickname + " starts using a new dice: " + dice.toString() + "\n");
 	}
 	
 	public int launchDice() {

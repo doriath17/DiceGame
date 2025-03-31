@@ -6,42 +6,36 @@ public class Game {
 	
 	private Player playerOne;
 	private Player playerTwo;
-	private int    numRounds;
-	
 	
 	// num_rounds >= 1 (in caso di errori settato al valore di default = 1)
-	public Game(Player playerOne, Player playerTwo, int numRounds) {
+	public Game(Player playerOne, Player playerTwo) {
 		this.playerOne = playerOne;
 		this.playerTwo = playerTwo;
-		
-		setNumRounds(numRounds);
 	}
 	
-	
-	public void setNumRounds(int numRounds) {
-		if (numRounds < NUM_ROUNDS_DEFAULT) {
-			this.numRounds = NUM_ROUNDS_DEFAULT;
-		} else {			
-			this.numRounds = numRounds;
-		}
-	}
 	
 	public void setPlayerOne(Player playerOne) {
 		this.playerOne = playerOne;
 	}
+	
 	
 	public void setPlayerTwo(Player playerTwo) {
 		this.playerTwo = playerTwo;
 	}
 	
 	
-	public void play() {
+	public void play(int numRounds) {
 		System.out.println(
-				"Here we have the two players:\n" + 
+				"\nHere we have the two players:\n" + 
 				playerOne + "\n" +
 				playerTwo + 
 				"\n\nGAME START!!!"
 		);
+		
+		numRounds = checkNumRounds(numRounds);
+		
+		playerOne.resetScore();
+		playerTwo.resetScore();
 	
 		for (int i=0; i<numRounds; i++) {
 			System.out.println("\nround : " + (i+1));
@@ -49,6 +43,17 @@ public class Game {
 		}
 		
 		System.out.println(getGameResults());
+	}
+	
+	
+	// se il numero di rounds <= 0 imposta a 1
+	// se e' valido non lo cambia
+	private int checkNumRounds(int numRounds) {
+		if (numRounds < NUM_ROUNDS_DEFAULT) {
+			return NUM_ROUNDS_DEFAULT;
+		} else {			
+			return numRounds;
+		}
 	}
 	
 	
@@ -80,15 +85,18 @@ public class Game {
 		}
 		
 		if (winner == loser) {
-			sb.append("GAME TIED!!");
+			sb.append("GAME TIED!!\n");
+			sb.append(
+					playerOne.nickname + " with " + playerOne.getScore() + " points!\n" + 
+					playerTwo.nickname + " with " + playerTwo.getScore() + " points!\n"
+				);
 		} else {
 			sb.append(winner.nickname + " wins the game!!\n\n");
+			sb.append(
+					winner.nickname + " wins with "  + winner.getScore() + " points!\n" + 
+					loser.nickname  + " loses with " + loser.getScore()  + " points.\n"
+				);
 		}
-		
-		sb.append(
-				winner.nickname + " wins with "  + winner.getScore() + " points!\n" + 
-				loser.nickname  + " loses with " + loser.getScore()  + " points.\n"
-			);
 		
 		return sb.toString();
 	}
