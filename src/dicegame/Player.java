@@ -17,9 +17,9 @@ public class Player {
 		}
 	};
 	
-	private final String name;
-	private final String surname; 
-	private final String nickname;
+	public final String name;
+	public final String surname; 
+	public final String nickname;
 	private Dice dice;
 	private int score;
 
@@ -37,14 +37,13 @@ public class Player {
 				"\nnickname  = " + nickname + 
 				"\ndice: ["+ dice.min + ", " +  dice.max + "]";
 	}
-	
-
-	public String getNickname() {
-		return nickname;
-	}
 
 	public int getScore() {
 		return score;
+	}
+	
+	public void setDice(Dice dice) {
+		this.dice = dice;
 	}
 	
 	public int launchDice() {

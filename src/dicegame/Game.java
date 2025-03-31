@@ -8,7 +8,7 @@ public class Game {
 	private Player playerTwo;
 	private int    numRounds;
 	
-
+	
 	// num_rounds >= 1 (in caso di errori settato al valore di default = 1)
 	public Game(Player playerOne, Player playerTwo, int numRounds) {
 		this.playerOne = playerOne;
@@ -16,7 +16,7 @@ public class Game {
 		
 		setNumRounds(numRounds);
 	}
-
+	
 	
 	public void setNumRounds(int numRounds) {
 		if (numRounds < NUM_ROUNDS_DEFAULT) {
@@ -25,7 +25,15 @@ public class Game {
 			this.numRounds = numRounds;
 		}
 	}
-
+	
+	public void setPlayerOne(Player playerOne) {
+		this.playerOne = playerOne;
+	}
+	
+	public void setPlayerTwo(Player playerTwo) {
+		this.playerTwo = playerTwo;
+	}
+	
 	
 	public void play() {
 		System.out.println(
@@ -49,8 +57,8 @@ public class Game {
 		int resultTwo = playerTwo.launchDice();
 		
 		System.out.println(
-			playerOne.getNickname() + " : " + resultOne + "\n" + 
-			playerTwo.getNickname() + " : " + resultTwo
+			playerOne.nickname + " : " + resultOne + "\n" + 
+			playerTwo.nickname + " : " + resultTwo
 		);
 	}
 
@@ -74,12 +82,12 @@ public class Game {
 		if (winner == loser) {
 			sb.append("GAME TIED!!");
 		} else {
-			sb.append(winner.getNickname() + " wins the game!!\n\n");
+			sb.append(winner.nickname + " wins the game!!\n\n");
 		}
 		
 		sb.append(
-				winner.getNickname() + " wins with "  + winner.getScore() + " points!\n" + 
-				loser.getNickname()  + " loses with " + loser.getScore()  + " points.\n"
+				winner.nickname + " wins with "  + winner.getScore() + " points!\n" + 
+				loser.nickname  + " loses with " + loser.getScore()  + " points.\n"
 			);
 		
 		return sb.toString();
